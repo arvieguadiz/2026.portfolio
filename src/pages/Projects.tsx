@@ -1,0 +1,137 @@
+import React from 'react';
+import { Box, Typography, Button, Stack, Link } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/app/store';
+import GlassCard from '@/components/GlassCard';
+import SectionHeading from '@/components/SectionHeading';
+import { ExternalLink, Github } from 'lucide-react';
+
+const Projects: React.FC = () => {
+  const { items } = useSelector((state: RootState) => state.projects);
+
+  const displayProjects =
+    items.length > 0
+      ? items
+      : [
+          {
+            id: '1',
+            title: 'Glassmorphism Portfolio',
+            description:
+              'A premium React portfolio with Vite, Redux Toolkit, and Framer Motion.',
+            imageUrl: 'https://placehold.co/400x250/000000/FFF',
+            tags: ['React', 'MUI', 'Framer Motion'],
+            github: '#',
+            link: '#',
+          },
+          {
+            id: '2',
+            title: 'AI Dashboard',
+            description:
+              'Real-time data visualization platform with AI-driven insights.',
+            imageUrl: 'https://placehold.co/400x250/000000/FFF',
+            tags: ['Next.js', 'D3.js', 'PostgreSQL'],
+            github: '#',
+            link: '#',
+          },
+        ];
+
+  return (
+    <Box id="projects" sx={{ py: 10 }}>
+      <SectionHeading subtitle="A selection of my recent works and technical experiments.">
+        Selected Projects
+      </SectionHeading>
+
+      <Grid container spacing={4}>
+        {displayProjects.map((project) => (
+          <Grid size={{ xs: 12, md: 6 }} key={project.id}>
+            <GlassCard>
+              <Box
+                sx={{
+                  width: '100%',
+                  height: '240px',
+                  borderRadius: '12px',
+                  mb: 3,
+                  overflow: 'hidden',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                }}
+              >
+                <img
+                  src={project.imageUrl}
+                  alt={project.title}
+                  style={{
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    opacity: 0.8,
+                  }}
+                />
+              </Box>
+              <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
+                {project.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                sx={{ mb: 3, minHeight: '48px' }}
+              >
+                {project.description}
+              </Typography>
+
+              <Stack
+                direction="row"
+                spacing={1}
+                sx={{ mb: 3, flexWrap: 'wrap', gap: 1 }}
+              >
+                {project.tags.map((tag) => (
+                  <Typography
+                    key={tag}
+                    variant="caption"
+                    sx={{
+                      px: 1.5,
+                      py: 0.5,
+                      borderRadius: '20px',
+                      bgcolor: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                    }}
+                  >
+                    {tag}
+                  </Typography>
+                ))}
+              </Stack>
+
+              <Stack direction="row" spacing={2}>
+                <Button
+                  startIcon={<ExternalLink size={18} />}
+                  variant="text"
+                  color="secondary"
+                  component={Link}
+                  href={project.link}
+                  sx={{ fontWeight: 600 }}
+                >
+                  Live Demo
+                </Button>
+                <Button
+                  startIcon={<Github size={18} />}
+                  variant="text"
+                  color="inherit"
+                  component={Link}
+                  href={project.github}
+                  sx={{ opacity: 0.7, '&:hover': { opacity: 1 } }}
+                >
+                  Code
+                </Button>
+              </Stack>
+            </GlassCard>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  );
+};
+
+export default Projects;
