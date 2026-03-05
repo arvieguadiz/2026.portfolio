@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Chip, Stack } from '@mui/material';
+import { Box, Typography, Chip, Stack, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import GlassCard from '@/components/GlassCard';
 import SectionHeading from '@/components/SectionHeading';
@@ -16,6 +16,8 @@ const skills = [
 ];
 
 const About: React.FC = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   return (
     <Box id="about" sx={{ py: 10 }}>
       <SectionHeading subtitle="A quick overview of who I am and what I do.">
@@ -52,12 +54,16 @@ const About: React.FC = () => {
                   key={skill}
                   label={skill}
                   sx={{
-                    bgcolor: 'rgba(156, 39, 176, 0.1)',
-                    border: '1px solid rgba(156, 39, 176, 0.2)',
-                    color: '#fff',
+                    bgcolor: isDarkMode
+                      ? 'rgba(156, 39, 176, 0.1)'
+                      : 'rgba(156, 39, 176, 0.05)',
+                    border: `1px solid ${isDarkMode ? 'rgba(156, 39, 176, 0.2)' : 'rgba(156, 39, 176, 0.1)'}`,
+                    color: isDarkMode ? '#fff' : '#9c27b0',
                     fontWeight: 500,
                     '&:hover': {
-                      bgcolor: 'rgba(156, 39, 176, 0.2)',
+                      bgcolor: isDarkMode
+                        ? 'rgba(156, 39, 176, 0.2)'
+                        : 'rgba(156, 39, 176, 0.15)',
                     },
                   }}
                 />

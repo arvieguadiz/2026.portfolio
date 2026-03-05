@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Typography, Button, Stack, Link } from '@mui/material';
+import { Box, Typography, Button, Stack, Link, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/app/store';
@@ -8,6 +8,8 @@ import SectionHeading from '@/components/SectionHeading';
 import { ExternalLink, Github } from 'lucide-react';
 
 const Projects: React.FC = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   const { items } = useSelector((state: RootState) => state.projects);
 
   const displayProjects =
@@ -53,11 +55,13 @@ const Projects: React.FC = () => {
                   borderRadius: '12px',
                   mb: 3,
                   overflow: 'hidden',
-                  background: 'rgba(255, 255, 255, 0.05)',
+                  background: isDarkMode
+                    ? 'rgba(255, 255, 255, 0.05)'
+                    : 'rgba(0, 0, 0, 0.05)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  border: '1px solid rgba(255, 255, 255, 0.1)',
+                  border: `1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
                 }}
               >
                 <img
@@ -95,8 +99,10 @@ const Projects: React.FC = () => {
                       px: 1.5,
                       py: 0.5,
                       borderRadius: '20px',
-                      bgcolor: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid rgba(255, 255, 255, 0.1)',
+                      bgcolor: isDarkMode
+                        ? 'rgba(255, 255, 255, 0.05)'
+                        : 'rgba(0, 0, 0, 0.05)',
+                      border: `1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
                     }}
                   >
                     {tag}
@@ -108,10 +114,10 @@ const Projects: React.FC = () => {
                 <Button
                   startIcon={<ExternalLink size={18} />}
                   variant="text"
-                  color="secondary"
+                  color={isDarkMode ? 'secondary' : 'primary'}
                   component={Link}
                   href={project.link}
-                  sx={{ fontWeight: 600 }}
+                  sx={{ fontWeight: 800 }}
                 >
                   Live Demo
                 </Button>

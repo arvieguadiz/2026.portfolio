@@ -6,7 +6,7 @@ interface UiState {
 }
 
 const initialState: UiState = {
-  darkMode: true,
+  darkMode: localStorage.getItem('theme') !== 'light',
   menuOpen: false,
 };
 
@@ -16,9 +16,11 @@ const uiSlice = createSlice({
   reducers: {
     toggleTheme: (state) => {
       state.darkMode = !state.darkMode;
+      localStorage.setItem('theme', state.darkMode ? 'dark' : 'light');
     },
     setTheme: (state, action: PayloadAction<boolean>) => {
       state.darkMode = action.payload;
+      localStorage.setItem('theme', state.darkMode ? 'dark' : 'light');
     },
     toggleMenu: (state) => {
       state.menuOpen = !state.menuOpen;

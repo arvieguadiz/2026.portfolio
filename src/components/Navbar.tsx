@@ -6,11 +6,16 @@ import {
   Button,
   Container,
   Box,
+  useTheme,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 
+import ThemeToggle from './ThemeToggle';
+
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,10 +54,20 @@ const Navbar: React.FC = () => {
     <AppBar
       position="fixed"
       sx={{
-        bgcolor: scrolled ? 'rgba(10, 10, 10, 0.7)' : 'transparent',
+        bgcolor: scrolled
+          ? isDarkMode
+            ? 'rgba(10, 10, 10, 0.7)'
+            : 'rgba(255, 255, 255, 0.7)'
+          : 'transparent',
         backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        boxShadow: scrolled ? '0 4px 30px rgba(0, 0, 0, 0.5)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255, 255, 255, 0.05)' : 'none',
+        boxShadow: scrolled
+          ? isDarkMode
+            ? '0 4px 30px rgba(0, 0, 0, 0.5)'
+            : '0 4px 30px rgba(0, 0, 0, 0.05)'
+          : 'none',
+        borderBottom: scrolled
+          ? `1px solid ${isDarkMode ? 'rgba(255, 255, 255, 0.05)' : 'rgba(0, 0, 0, 0.05)'}`
+          : 'none',
         transition: 'all 0.3s ease',
       }}
     >
@@ -69,27 +84,36 @@ const Navbar: React.FC = () => {
             PORTFOLIO<span style={{ color: '#9c27b0' }}>.</span>
           </Typography>
 
-          <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
-            {navItems.map((item, index) => (
-              <Button
-                key={item}
-                component={motion.button}
-                onClick={() => scrollToSection(item)}
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                sx={{
-                  color: 'text.primary',
-                  fontWeight: 600,
-                  '&:hover': {
-                    color: 'primary.main',
-                    backgroundColor: 'transparent',
-                  },
-                }}
-              >
-                {item}
-              </Button>
-            ))}
+          <Box
+            sx={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: { xs: 2, md: 4 },
+            }}
+          >
+            <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
+              {navItems.map((item, index) => (
+                <Button
+                  key={item}
+                  component={motion.button}
+                  onClick={() => scrollToSection(item)}
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  sx={{
+                    color: 'text.primary',
+                    fontWeight: 600,
+                    '&:hover': {
+                      color: 'primary.main',
+                      backgroundColor: 'transparent',
+                    },
+                  }}
+                >
+                  {item}
+                </Button>
+              ))}
+            </Box>
+            <ThemeToggle />
           </Box>
         </Toolbar>
       </Container>

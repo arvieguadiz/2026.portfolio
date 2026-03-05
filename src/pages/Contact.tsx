@@ -1,11 +1,13 @@
 import React from 'react';
-import { Box, TextField, Button } from '@mui/material';
+import { Box, TextField, Button, useTheme } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import GlassCard from '@/components/GlassCard';
 import SectionHeading from '@/components/SectionHeading';
 import { Send } from 'lucide-react';
 
 const Contact: React.FC = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   return (
     <Box id="contact" sx={{ py: 10 }}>
       <SectionHeading subtitle="Have a project in mind or just want to say hi? Feel free to reach out.">
@@ -24,7 +26,9 @@ const Contact: React.FC = () => {
                     variant="outlined"
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        bgcolor: 'rgba(255, 255, 255, 0.02)',
+                        bgcolor: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.02)'
+                          : 'rgba(0, 0, 0, 0.02)',
                         borderRadius: '12px',
                       },
                     }}
@@ -37,7 +41,9 @@ const Contact: React.FC = () => {
                     variant="outlined"
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        bgcolor: 'rgba(255, 255, 255, 0.02)',
+                        bgcolor: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.02)'
+                          : 'rgba(0, 0, 0, 0.02)',
                         borderRadius: '12px',
                       },
                     }}
@@ -50,7 +56,9 @@ const Contact: React.FC = () => {
                     variant="outlined"
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        bgcolor: 'rgba(255, 255, 255, 0.02)',
+                        bgcolor: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.02)'
+                          : 'rgba(0, 0, 0, 0.02)',
                         borderRadius: '12px',
                       },
                     }}
@@ -65,7 +73,9 @@ const Contact: React.FC = () => {
                     variant="outlined"
                     sx={{
                       '& .MuiOutlinedInput-root': {
-                        bgcolor: 'rgba(255, 255, 255, 0.02)',
+                        bgcolor: isDarkMode
+                          ? 'rgba(255, 255, 255, 0.02)'
+                          : 'rgba(0, 0, 0, 0.02)',
                         borderRadius: '12px',
                       },
                     }}

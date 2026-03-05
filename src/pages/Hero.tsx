@@ -1,9 +1,11 @@
 import React from 'react';
-import { Box, Typography, Button, Stack } from '@mui/material';
+import { Box, Typography, Button, Stack, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
 import { MousePointer2 } from 'lucide-react';
 
 const Hero: React.FC = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   return (
     <Box
       sx={{
@@ -34,7 +36,9 @@ const Hero: React.FC = () => {
             fontSize: { xs: '3rem', md: '5rem' },
             mb: 3,
             fontWeight: 800,
-            background: 'linear-gradient(90deg, #fff 30%, #9c27b0 90%)',
+            background: isDarkMode
+              ? 'linear-gradient(90deg, #fff 30%, #9c27b0 90%)'
+              : 'linear-gradient(90deg, #1a1a1a 30%, #9c27b0 90%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
           }}
@@ -69,12 +73,18 @@ const Hero: React.FC = () => {
             variant="outlined"
             size="large"
             sx={{
-              borderColor: 'rgba(255, 255, 255, 0.2)',
-              color: '#fff',
+              borderColor: isDarkMode
+                ? 'rgba(255, 255, 255, 0.2)'
+                : 'rgba(0, 0, 0, 0.2)',
+              color: isDarkMode ? '#fff' : '#1a1a1a',
               backdropFilter: 'blur(10px)',
               '&:hover': {
-                borderColor: 'rgba(255, 255, 255, 0.4)',
-                background: 'rgba(255, 255, 255, 0.05)',
+                borderColor: isDarkMode
+                  ? 'rgba(255, 255, 255, 0.4)'
+                  : 'rgba(0, 0, 0, 0.4)',
+                background: isDarkMode
+                  ? 'rgba(255, 255, 255, 0.05)'
+                  : 'rgba(0, 0, 0, 0.05)',
               },
             }}
             component={motion.button}

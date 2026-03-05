@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, useTheme } from '@mui/material';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 const CustomCursor: React.FC = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === 'dark';
   const [isVisible, setIsVisible] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);
@@ -46,8 +48,10 @@ const CustomCursor: React.FC = () => {
         width: 40,
         height: 40,
         borderRadius: '50%',
-        backgroundColor: 'rgba(156, 39, 176, 0.3)',
-        border: '1px solid rgba(156, 39, 176, 0.5)',
+        backgroundColor: isDarkMode
+          ? 'rgba(156, 39, 176, 0.3)'
+          : 'rgba(156, 39, 176, 0.15)',
+        border: `1px solid ${isDarkMode ? 'rgba(156, 39, 176, 0.5)' : 'rgba(156, 39, 176, 0.3)'}`,
         pointerEvents: 'none',
         zIndex: 9999,
         display: { xs: 'none', md: 'block' },
