@@ -43,15 +43,15 @@ const Hero: React.FC = () => {
             WebkitTextFillColor: 'transparent',
           }}
         >
-          Building Digital <br /> Experiences
+          Fullstack MERN <br /> Developer
         </Typography>
         <Typography
           variant="body1"
           color="text.secondary"
           sx={{ maxWidth: '600px', mx: 'auto', mb: 5, fontSize: '1.1rem' }}
         >
-          Combining modern technology with stunning design to create performant
-          and memorable web applications.
+          Specializing in MongoDB, Express, React, and Node.js. Defining modern
+          backend architectures and intuitive frontend experiences.
         </Typography>
 
         <Stack

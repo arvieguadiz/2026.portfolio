@@ -6,13 +6,13 @@ import SectionHeading from '@/components/SectionHeading';
 
 const skills = [
   'React',
-  'TypeScript',
   'Node.js',
+  'Express',
+  'MongoDB',
+  'TypeScript',
   'Redux Toolkit',
   'Material UI',
-  'Framer Motion',
-  'Vite',
-  'PostgreSQL',
+  'REST APIs',
 ];
 
 const About: React.FC = () => {
@@ -31,14 +31,14 @@ const About: React.FC = () => {
               The Journey
             </Typography>
             <Typography variant="body1" paragraph color="text.secondary">
-              I am a passionate software engineer focused on building immersive
-              digital experiences. My approach blends technical rigor with
-              creative design, ensuring every project is as beautiful as it is
-              functional.
+              I am a Fullstack Web Developer specialized in the MERN stack
+              (MongoDB, Express, React, Node.js). My passion lies in building
+              scalable, end-to-end applications that solve real-world problems.
             </Typography>
             <Typography variant="body1" color="text.secondary">
-              With years of experience in the JavaScript ecosystem, I specialize
-              in front-end architecture and interactive user interfaces.
+              From designing robust server-side architectures and RESTful APIs
+              to crafting interactive, responsive front-end interfaces, I enjoy
+              being involved in every step of the development lifecycle.
             </Typography>
           </GlassCard>
         </Grid>

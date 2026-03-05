@@ -18,21 +18,31 @@ const Projects: React.FC = () => {
       : [
           {
             id: '1',
-            title: 'Glassmorphism Portfolio',
+            title: 'Fullstack E-Commerce Platform',
             description:
-              'A premium React portfolio with Vite, Redux Toolkit, and Framer Motion.',
-            imageUrl: 'https://placehold.co/400x250/000000/FFF',
-            tags: ['React', 'MUI', 'Framer Motion'],
+              'A robust e-commerce application featuring JWT authentication, Stripe integration, and an admin dashboard.',
+            imageUrl: 'https://placehold.co/400x250/000000/FFF?text=E-Commerce',
+            tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Redux'],
             github: '#',
             link: '#',
           },
           {
             id: '2',
-            title: 'AI Dashboard',
+            title: 'Real-time Chat Application',
             description:
-              'Real-time data visualization platform with AI-driven insights.',
-            imageUrl: 'https://placehold.co/400x250/000000/FFF',
-            tags: ['Next.js', 'D3.js', 'PostgreSQL'],
+              'A real-time communication platform utilizing Socket.io for instant messaging, read receipts, and online presence.',
+            imageUrl: 'https://placehold.co/400x250/000000/FFF?text=Chat+App',
+            tags: ['React', 'Socket.io', 'Node.js', 'MongoDB'],
+            github: '#',
+            link: '#',
+          },
+          {
+            id: '3',
+            title: 'Project Management Dashboard',
+            description:
+              'A Kanban-style project management tool with drag-and-drop functionality and detailed analytics.',
+            imageUrl: 'https://placehold.co/400x250/000000/FFF?text=Dashboard',
+            tags: ['React', 'Express', 'MongoDB', 'Chart.js'],
             github: '#',
             link: '#',
           },
