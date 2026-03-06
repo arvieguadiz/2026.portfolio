@@ -1,11 +1,25 @@
 import React from 'react';
 import { Box, Typography, Button, Stack, useTheme } from '@mui/material';
 import { motion } from 'framer-motion';
-import { MousePointer2 } from 'lucide-react';
+import { MousePointer2, FileDown } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { downloadResume } from '@/features/ui/uiSlice';
 
 const Hero: React.FC = () => {
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  const dispatch = useDispatch();
+
+  const handleDownloadResume = () => {
+    dispatch(downloadResume());
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Arvie_Benito_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   return (
     <Box
       sx={{
@@ -63,11 +77,13 @@ const Hero: React.FC = () => {
             variant="contained"
             color="primary"
             size="large"
+            startIcon={<FileDown size={20} />}
+            onClick={handleDownloadResume}
             component={motion.button}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            View Projects
+            Download Resume
           </Button>
           <Button
             variant="outlined"
@@ -90,6 +106,19 @@ const Hero: React.FC = () => {
             component={motion.button}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => {
+              const element = document.getElementById('contact');
+              if (element) {
+                const offset = 80;
+                const elementPosition =
+                  element.getBoundingClientRect().top -
+                  document.body.getBoundingClientRect().top;
+                window.scrollTo({
+                  top: elementPosition - offset,
+                  behavior: 'smooth',
+                });
+              }
+            }}
           >
             Let's Talk
           </Button>

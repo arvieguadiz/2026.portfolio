@@ -55,9 +55,9 @@ const Projects: React.FC = () => {
       </SectionHeading>
 
       <Grid container spacing={4}>
-        {displayProjects.map((project) => (
+        {displayProjects.map((project, index) => (
           <Grid size={{ xs: 12, md: 6 }} key={project.id}>
-            <GlassCard>
+            <GlassCard delay={index * 0.15}>
               <Box
                 sx={{
                   width: '100%',
