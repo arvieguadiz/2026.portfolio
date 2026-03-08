@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arviebenito.com/sitemap.xml
+
+# Disallow sensitive or admin paths (if any)
+# Disallow: /admin
+# Disallow: /api
+
+# Crawl delay for polite crawling
+Crawl-delay: 1
