@@ -16,6 +16,7 @@ const ThemeToggle: React.FC = () => {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={() => dispatch(toggleTheme())}
+      aria-label={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}
       sx={{
         color: 'text.primary',
         p: 1.5,

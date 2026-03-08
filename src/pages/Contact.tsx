@@ -117,6 +117,7 @@ const Contact: React.FC = () => {
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <TextField
                       fullWidth
+                      id="name"
                       name="user_name"
                       required
                       label="Name"
@@ -134,6 +135,7 @@ const Contact: React.FC = () => {
                   <Grid size={{ xs: 12, sm: 6 }}>
                     <TextField
                       fullWidth
+                      id="email"
                       name="user_email"
                       type="email"
                       required
@@ -152,6 +154,7 @@ const Contact: React.FC = () => {
                   <Grid size={{ xs: 12 }}>
                     <TextField
                       fullWidth
+                      id="subject"
                       name="subject"
                       label="Subject"
                       variant="outlined"
@@ -168,6 +171,7 @@ const Contact: React.FC = () => {
                   <Grid size={{ xs: 12 }}>
                     <TextField
                       fullWidth
+                      id="message"
                       name="message"
                       required
                       label="Message"

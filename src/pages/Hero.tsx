@@ -50,6 +50,7 @@ const Hero: React.FC = () => {
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           <Typography
+            component="p"
             variant="h6"
             color="primary"
             sx={{ fontWeight: 600, mb: 2, letterSpacing: 2 }}
