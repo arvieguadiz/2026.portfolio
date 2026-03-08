@@ -193,7 +193,7 @@ const Projects: React.FC = () => {
                           style={{ opacity: 0.8 }}
                         />
                       </Box>
-                      <Typography variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
+                      <Typography component="h3" variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
                         {project.title}
                       </Typography>
                       <Typography

@@ -90,7 +90,7 @@ const About: React.FC = () => {
         <Grid container spacing={4}>
           <Grid size={{ xs: 12, md: 7 }}>
             <GlassCard delay={0.1}>
-              <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+              <Typography component="h3" variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
                 The Journey
               </Typography>
               <Typography variant="body1" paragraph color="text.secondary">
@@ -108,7 +108,7 @@ const About: React.FC = () => {
 
           <Grid size={{ xs: 12, md: 5 }}>
             <GlassCard delay={0.2}>
-              <Typography variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+              <Typography component="h3" variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
                 Tech Stack
               </Typography>
               <Typography
@@ -135,6 +135,7 @@ const About: React.FC = () => {
           <Grid size={{ xs: 12 }}>
             <GlassCard delay={0.3}>
               <Typography
+                component="h3"
                 variant="h5"
                 gutterBottom
                 sx={{ fontWeight: 600, mb: 4 }}
@@ -149,6 +150,7 @@ const About: React.FC = () => {
           <Grid size={{ xs: 12 }}>
             <GlassCard delay={0.4}>
               <Typography
+                component="h3"
                 variant="h5"
                 gutterBottom
                 sx={{ fontWeight: 600, mb: 4 }}
