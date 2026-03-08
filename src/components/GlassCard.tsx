@@ -18,16 +18,21 @@ const GlassContainer = styled(MotionPaper)(({ theme }) => ({
 interface GlassCardProps {
   children: React.ReactNode;
   animate?: boolean;
+  delay?: number;
 }
 
-const GlassCard: React.FC<GlassCardProps> = ({ children, animate = true }) => {
+const GlassCard: React.FC<GlassCardProps> = ({
+  children,
+  animate = true,
+  delay = 0,
+}) => {
   return (
     <GlassContainer
-      initial={animate ? { opacity: 0, y: 20 } : undefined}
+      initial={animate ? { opacity: 0, y: 30 } : undefined}
       whileInView={animate ? { opacity: 1, y: 0 } : undefined}
-      viewport={{ once: true }}
-      whileHover={{ y: -8 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      viewport={{ once: true, margin: '-50px' }}
+      whileHover={{ y: -8, transition: { duration: 0.2 } }}
+      transition={{ duration: 0.6, delay, ease: 'easeOut' }}
     >
       <Box sx={{ position: 'relative', zIndex: 1 }}>{children}</Box>
     </GlassContainer>

@@ -9,6 +9,10 @@ import {
   useTheme,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import { FileDown } from 'lucide-react';
+import { useDispatch, useSelector } from 'react-redux';
+import { downloadResume } from '@/features/ui/uiSlice';
+import { type RootState } from '@/app/store';
 
 import ThemeToggle from './ThemeToggle';
 
@@ -16,6 +20,18 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const theme = useTheme();
   const isDarkMode = theme.palette.mode === 'dark';
+  const dispatch = useDispatch();
+  const { hasDownloadedResume } = useSelector((state: RootState) => state.ui);
+
+  const handleDownloadResume = () => {
+    dispatch(downloadResume());
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'Arvie_Benito_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -113,6 +129,24 @@ const Navbar: React.FC = () => {
                 </Button>
               ))}
             </Box>
+            <Button
+              variant={hasDownloadedResume ? 'text' : 'outlined'}
+              size="small"
+              startIcon={<FileDown size={16} />}
+              onClick={handleDownloadResume}
+              sx={{
+                display: { xs: 'none', sm: 'flex' },
+                borderRadius: '8px',
+                borderColor: isDarkMode
+                  ? 'rgba(255, 255, 255, 0.2)'
+                  : 'rgba(0, 0, 0, 0.2)',
+                color: isDarkMode ? '#fff' : '#1a1a1a',
+                textTransform: 'none',
+                fontWeight: 600,
+              }}
+            >
+              Resume
+            </Button>
             <ThemeToggle />
           </Box>
         </Toolbar>
