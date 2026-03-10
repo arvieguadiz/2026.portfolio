@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Box, useTheme } from '@mui/material';
+import { Box } from '@mui/material';
 import { motion, useSpring, useMotionValue } from 'framer-motion';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 const CustomCursor: React.FC = () => {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const { isDarkMode } = useThemeMode();
   const [isVisible, setIsVisible] = useState(false);
   const cursorX = useMotionValue(-100);
   const cursorY = useMotionValue(-100);

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Box, Typography, useTheme } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
 import { Briefcase, GraduationCap, Code } from 'lucide-react';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 interface TimelineItemProps {
   title: string;
@@ -49,8 +50,7 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   isLast,
   index,
 }) => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const { isDarkMode: isDark, theme } = useThemeMode();
 
   return (
     <Box

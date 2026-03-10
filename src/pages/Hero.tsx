@@ -1,20 +1,20 @@
 import React from 'react';
-import { Box, Typography, Button, Stack, useTheme } from '@mui/material';
+import { Box, Typography, Button, Stack } from '@mui/material';
 import { motion } from 'framer-motion';
 import { MousePointer2, FileDown } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import SEO from '@/components/SEO';
 import { downloadResume } from '@/features/ui/uiSlice';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 const Hero: React.FC = () => {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const { isDarkMode } = useThemeMode();
   const dispatch = useDispatch();
 
   const handleDownloadResume = () => {
     dispatch(downloadResume());
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = '/Resume_Benito.pdf';
     link.download = 'Arvie_Benito_Resume.pdf';
     document.body.appendChild(link);
     link.click();
@@ -23,9 +23,11 @@ const Hero: React.FC = () => {
 
   const seoData = {
     title: 'Arvie Benito | Fullstack MERN Developer',
-    description: 'Fullstack web developer specializing in MongoDB, Express, React, and Node.js. Building scalable backend architectures and intuitive frontend experiences.',
+    description:
+      'Fullstack web developer specializing in MongoDB, Express, React, and Node.js. Building scalable backend architectures and intuitive frontend experiences.',
     ogTitle: 'Arvie Benito - Fullstack MERN Developer Portfolio',
-    ogDescription: 'Explore the portfolio of Arvie Benito, a Fullstack MERN developer specializing in modern web applications, RESTful APIs, and responsive UI/UX.',
+    ogDescription:
+      'Explore the portfolio of Arvie Benito, a Fullstack MERN developer specializing in modern web applications, RESTful APIs, and responsive UI/UX.',
     ogImage: 'https://arviebenito.com/public/vite.svg',
   };
 
@@ -77,8 +79,8 @@ const Hero: React.FC = () => {
             color="text.secondary"
             sx={{ maxWidth: '600px', mx: 'auto', mb: 5, fontSize: '1.1rem' }}
           >
-            Specializing in MongoDB, Express, React, and Node.js. Defining modern
-            backend architectures and intuitive frontend experiences.
+            Specializing in MongoDB, Express, React, and Node.js. Defining
+            modern backend architectures and intuitive frontend experiences.
           </Typography>
 
           <Stack

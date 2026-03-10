@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Box, Paper, Typography, IconButton, useTheme } from '@mui/material';
+import { Box, Paper, Typography, IconButton } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 export interface Testimonial {
   id: string;
@@ -30,15 +31,17 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
   showArrows = true,
   showDots = true,
 }) => {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const { isDarkMode, theme } = useThemeMode();
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const goToSlide = useCallback((index: number) => {
-    setCurrentIndex((index + testimonials.length) % testimonials.length);
-  }, [testimonials.length]);
+  const goToSlide = useCallback(
+    (index: number) => {
+      setCurrentIndex((index + testimonials.length) % testimonials.length);
+    },
+    [testimonials.length],
+  );
 
   const nextSlide = useCallback(() => {
     goToSlide(currentIndex + 1);
@@ -222,7 +225,8 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                     }}
                   >
                     {currentTestimonial.role}
-                    {currentTestimonial.company && ` at ${currentTestimonial.company}`}
+                    {currentTestimonial.company &&
+                      ` at ${currentTestimonial.company}`}
                   </Typography>
                 </Box>
               </Box>
@@ -242,12 +246,16 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
               left: { xs: 4, sm: 8, md: 16 },
               top: '50%',
               transform: 'translateY(-50%)',
-              bgcolor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+              bgcolor: isDarkMode
+                ? 'rgba(255,255,255,0.05)'
+                : 'rgba(0,0,0,0.05)',
               backdropFilter: 'blur(4px)',
               border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
               color: 'text.primary',
               '&:hover': {
-                bgcolor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                bgcolor: isDarkMode
+                  ? 'rgba(255,255,255,0.1)'
+                  : 'rgba(0,0,0,0.1)',
                 color: 'primary.main',
               },
               '&:disabled': {
@@ -270,12 +278,16 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
               right: { xs: 4, sm: 8, md: 16 },
               top: '50%',
               transform: 'translateY(-50%)',
-              bgcolor: isDarkMode ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0.05)',
+              bgcolor: isDarkMode
+                ? 'rgba(255,255,255,0.05)'
+                : 'rgba(0,0,0,0.05)',
               backdropFilter: 'blur(4px)',
               border: `1px solid ${isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`,
               color: 'text.primary',
               '&:hover': {
-                bgcolor: isDarkMode ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)',
+                bgcolor: isDarkMode
+                  ? 'rgba(255,255,255,0.1)'
+                  : 'rgba(0,0,0,0.1)',
                 color: 'primary.main',
               },
               '&:disabled': {
@@ -315,9 +327,15 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
                 height: { xs: 10, sm: 12 },
                 p: 0,
                 borderRadius: '50%',
-                bgcolor: index === currentIndex ? 'primary.main' : isDarkMode ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+                bgcolor:
+                  index === currentIndex
+                    ? 'primary.main'
+                    : isDarkMode
+                      ? 'rgba(255,255,255,0.2)'
+                      : 'rgba(0,0,0,0.2)',
                 '&:hover': {
-                  bgcolor: index === currentIndex ? 'primary.main' : 'primary.light',
+                  bgcolor:
+                    index === currentIndex ? 'primary.main' : 'primary.light',
                   transform: 'scale(1.2)',
                 },
                 transition: 'all 0.2s ease',

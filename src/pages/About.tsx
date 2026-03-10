@@ -73,9 +73,11 @@ const skills: Skill[] = [
 const About: React.FC = () => {
   const seoData = {
     title: 'About Arvie Benito | Fullstack MERN Developer',
-    description: 'Learn about Arvie Benito, a Fullstack MERN developer with expertise in building scalable web applications. Discover technical skills, experience, and education.',
+    description:
+      'Learn about Arvie Benito, a Fullstack MERN developer with expertise in building scalable web applications. Discover technical skills, experience, and education.',
     ogTitle: 'About Arvie Benito - Fullstack Developer Portfolio',
-    ogDescription: 'Explore the background, skills, and experience of Arvie Benito, a Fullstack MERN developer specializing in modern web technologies.',
+    ogDescription:
+      'Explore the background, skills, and experience of Arvie Benito, a Fullstack MERN developer specializing in modern web technologies.',
     ogImage: 'https://arviebenito.com/public/vite.svg',
   };
 
@@ -90,25 +92,36 @@ const About: React.FC = () => {
         <Grid container spacing={4}>
           <Grid size={{ xs: 12, md: 7 }}>
             <GlassCard delay={0.1}>
-              <Typography component="h3" variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+              <Typography
+                component="h3"
+                variant="h5"
+                gutterBottom
+                sx={{ fontWeight: 600 }}
+              >
                 The Journey
               </Typography>
               <Typography variant="body1" paragraph color="text.secondary">
                 I am a Fullstack Web Developer specialized in the MERN stack
                 (MongoDB, Express, React, Node.js). My passion lies in building
-                scalable, end-to-end applications that solve real-world problems.
+                scalable, end-to-end applications that solve real-world
+                problems.
               </Typography>
               <Typography variant="body1" color="text.secondary">
                 From designing robust server-side architectures and RESTful APIs
-                to crafting interactive, responsive front-end interfaces, I enjoy
-                being involved in every step of the development lifecycle.
+                to crafting interactive, responsive front-end interfaces, I
+                enjoy being involved in every step of the development lifecycle.
               </Typography>
             </GlassCard>
           </Grid>
 
           <Grid size={{ xs: 12, md: 5 }}>
             <GlassCard delay={0.2}>
-              <Typography component="h3" variant="h5" gutterBottom sx={{ fontWeight: 600 }}>
+              <Typography
+                component="h3"
+                variant="h5"
+                gutterBottom
+                sx={{ fontWeight: 600 }}
+              >
                 Tech Stack
               </Typography>
               <Typography

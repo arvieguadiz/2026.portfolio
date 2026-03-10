@@ -3,7 +3,6 @@ import {
   Box,
   TextField,
   Button,
-  useTheme,
   Snackbar,
   Alert,
   CircularProgress,
@@ -14,10 +13,10 @@ import SectionHeading from '@/components/SectionHeading';
 import SEO from '@/components/SEO';
 import { Send, Linkedin, Github as GithubIcon, Mail } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 const Contact: React.FC = () => {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const { isDarkMode } = useThemeMode();
   const form = useRef<HTMLFormElement>(null);
 
   const [loading, setLoading] = useState(false);
@@ -90,9 +89,11 @@ const Contact: React.FC = () => {
 
   const seoData = {
     title: 'Contact Arvie Benito | Get in Touch',
-    description: 'Get in touch with Arvie Benito, a Fullstack MERN developer. Send a message for project inquiries, collaborations, or just to say hello.',
+    description:
+      'Get in touch with Arvie Benito, a Fullstack MERN developer. Send a message for project inquiries, collaborations, or just to say hello.',
     ogTitle: 'Contact Arvie Benito - Fullstack Developer',
-    ogDescription: 'Reach out to Arvie Benito for project collaborations, web development inquiries, and professional opportunities.',
+    ogDescription:
+      'Reach out to Arvie Benito for project collaborations, web development inquiries, and professional opportunities.',
     ogImage: 'https://arviebenito.com/public/vite.svg',
   };
 
