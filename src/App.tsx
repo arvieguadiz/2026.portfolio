@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import MainLayout from '@/layouts/MainLayout';
 import Hero from '@/pages/Hero';
 import SectionObserver from '@/components/SectionObserver';
+import ErrorBoundary from '@/components/ErrorBoundary';
 
 // Dynamic imports for code splitting
 const AboutLazy = React.lazy(() => import('@/pages/About'));
@@ -25,27 +26,35 @@ const pageData = {
 };
 
 function App() {
-  const sections = useMemo(() => [
-    { id: 'hero', title: pageData.hero.title },
-    { id: 'about', title: pageData.about.title },
-    { id: 'projects', title: pageData.projects.title },
-    { id: 'contact', title: pageData.contact.title },
-  ], []);
+  const sections = useMemo(
+    () => [
+      { id: 'hero', title: pageData.hero.title },
+      { id: 'about', title: pageData.about.title },
+      { id: 'projects', title: pageData.projects.title },
+      { id: 'contact', title: pageData.contact.title },
+    ],
+    [],
+  );
 
   return (
-    <MainLayout>
-      <SectionObserver sections={sections} defaultTitle={pageData.hero.title} />
-      <Hero />
-      <Suspense fallback={<Loading />}>
-        <AboutLazy />
-      </Suspense>
-      <Suspense fallback={<Loading />}>
-        <ProjectsLazy />
-      </Suspense>
-      <Suspense fallback={<Loading />}>
-        <ContactLazy />
-      </Suspense>
-    </MainLayout>
+    <ErrorBoundary>
+      <MainLayout>
+        <SectionObserver
+          sections={sections}
+          defaultTitle={pageData.hero.title}
+        />
+        <Hero />
+        <Suspense fallback={<Loading />}>
+          <AboutLazy />
+        </Suspense>
+        <Suspense fallback={<Loading />}>
+          <ProjectsLazy />
+        </Suspense>
+        <Suspense fallback={<Loading />}>
+          <ContactLazy />
+        </Suspense>
+      </MainLayout>
+    </ErrorBoundary>
   );
 }
 

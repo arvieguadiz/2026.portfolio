@@ -1,5 +1,5 @@
 import React, { useMemo } from 'react';
-import { Box, Typography, Button, Stack, Link, useTheme } from '@mui/material';
+import { Box, Typography, Button, Stack, Link } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState } from '@/app/store';
@@ -11,76 +11,19 @@ import FilterTabs from '@/components/FilterTabs';
 import LazyImage from '@/components/LazyImage';
 import SEO from '@/components/SEO';
 import { ExternalLink, Github } from 'lucide-react';
+import { mockProjects } from '@/data/projects';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 const Projects: React.FC = () => {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const { isDarkMode } = useThemeMode();
   const dispatch = useDispatch();
   const { items, filter } = useSelector((state: RootState) => state.projects);
-
-  const mockProjects = [
-    {
-      id: '1',
-      title: 'Fullstack E-Commerce Platform',
-      description:
-        'A robust e-commerce application featuring JWT authentication, Stripe integration, and an admin dashboard.',
-      imageUrl: 'https://placehold.co/400x250/000000/FFF?text=E-Commerce',
-      tags: ['React', 'Node.js', 'Express', 'MongoDB', 'Redux'],
-      category: 'fullstack' as const,
-      github: '#',
-      link: '#',
-    },
-    {
-      id: '2',
-      title: 'Real-time Chat Application',
-      description:
-        'A real-time communication platform utilizing Socket.io for instant messaging, read receipts, and online presence.',
-      imageUrl: 'https://placehold.co/400x250/000000/FFF?text=Chat+App',
-      tags: ['React', 'Socket.io', 'Node.js', 'MongoDB'],
-      category: 'fullstack' as const,
-      github: '#',
-      link: '#',
-    },
-    {
-      id: '3',
-      title: 'Project Management Dashboard',
-      description:
-        'A Kanban-style project management tool with drag-and-drop functionality and detailed analytics.',
-      imageUrl: 'https://placehold.co/400x250/000000/FFF?text=Dashboard',
-      tags: ['React', 'Express', 'MongoDB', 'Chart.js'],
-      category: 'fullstack' as const,
-      github: '#',
-      link: '#',
-    },
-    {
-      id: '4',
-      title: 'Interactive Portfolio Website',
-      description:
-        'A modern, responsive portfolio website with Glassmorphism design, animations, and dark mode support.',
-      imageUrl: 'https://placehold.co/400x250/000000/FFF?text=Portfolio',
-      tags: ['React', 'TypeScript', 'Material UI', 'Framer Motion'],
-      category: 'frontend' as const,
-      github: '#',
-      link: '#',
-    },
-    {
-      id: '5',
-      title: 'RESTful API Service',
-      description:
-        'A scalable backend API with authentication, rate limiting, and comprehensive documentation using OpenAPI.',
-      imageUrl: 'https://placehold.co/400x250/000000/FFF?text=API',
-      tags: ['Node.js', 'Express', 'MongoDB', 'JWT', 'Swagger'],
-      category: 'backend' as const,
-      github: '#',
-      link: '#',
-    },
-  ];
 
   const projects = items.length > 0 ? items : mockProjects;
 
   const categories = useMemo(() => {
     const uniqueCategories = Array.from(
-      new Set(projects.map((p) => p.category))
+      new Set(projects.map((p) => p.category)),
     );
     return ['all', ...uniqueCategories];
   }, [projects]);
@@ -91,7 +34,11 @@ const Projects: React.FC = () => {
   }, [projects, filter]);
 
   const handleCategoryChange = (category: string) => {
-    dispatch(setFilter(category as 'all' | 'frontend' | 'fullstack' | 'backend' | 'mobile'));
+    dispatch(
+      setFilter(
+        category as 'all' | 'frontend' | 'fullstack' | 'backend' | 'mobile',
+      ),
+    );
   };
 
   const containerVariants = {
@@ -129,9 +76,11 @@ const Projects: React.FC = () => {
 
   const seoData = {
     title: 'Projects | Arvie Benito - Fullstack MERN Developer',
-    description: 'Explore selected projects by Arvie Benito, featuring fullstack applications, RESTful APIs, and modern web solutions built with React, Node.js, Express, and MongoDB.',
+    description:
+      'Explore selected projects by Arvie Benito, featuring fullstack applications, RESTful APIs, and modern web solutions built with React, Node.js, Express, and MongoDB.',
     ogTitle: 'Projects - Arvie Benito Portfolio',
-    ogDescription: 'View a collection of fullstack and frontend projects showcasing expertise in MERN stack, API design, and modern web development.',
+    ogDescription:
+      'View a collection of fullstack and frontend projects showcasing expertise in MERN stack, API design, and modern web development.',
     ogImage: 'https://arviebenito.com/public/vite.svg',
   };
 
@@ -160,10 +109,7 @@ const Projects: React.FC = () => {
           <Grid container spacing={4}>
             <AnimatePresence mode="popLayout">
               {filteredProjects.map((project, index) => (
-                <Grid
-                  size={{ xs: 12, md: 6 }}
-                  key={project.id}
-                >
+                <Grid size={{ xs: 12, md: 6 }} key={project.id}>
                   <motion.div
                     variants={itemVariants}
                     layout
@@ -193,7 +139,11 @@ const Projects: React.FC = () => {
                           style={{ opacity: 0.8 }}
                         />
                       </Box>
-                      <Typography component="h3" variant="h5" sx={{ fontWeight: 700, mb: 1 }}>
+                      <Typography
+                        component="h3"
+                        variant="h5"
+                        sx={{ fontWeight: 700, mb: 1 }}
+                      >
                         {project.title}
                       </Typography>
                       <Typography

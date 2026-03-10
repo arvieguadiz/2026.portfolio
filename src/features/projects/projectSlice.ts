@@ -46,5 +46,6 @@ const projectSlice = createSlice({
   },
 });
 
-export const { setProjects, setLoading, setError, setFilter } = projectSlice.actions;
+export const { setProjects, setLoading, setError, setFilter } =
+  projectSlice.actions;
 export default projectSlice.reducer;

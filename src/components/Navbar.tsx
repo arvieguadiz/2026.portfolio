@@ -6,27 +6,26 @@ import {
   Button,
   Container,
   Box,
-  useTheme,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { FileDown } from 'lucide-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { downloadResume } from '@/features/ui/uiSlice';
 import { type RootState } from '@/app/store';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 import ThemeToggle from './ThemeToggle';
 
 const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const { isDarkMode } = useThemeMode();
   const dispatch = useDispatch();
   const { hasDownloadedResume } = useSelector((state: RootState) => state.ui);
 
   const handleDownloadResume = () => {
     dispatch(downloadResume());
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
+    link.href = '/Resume_Benito.pdf';
     link.download = 'Arvie_Benito_Resume.pdf';
     document.body.appendChild(link);
     link.click();

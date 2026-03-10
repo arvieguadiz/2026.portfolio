@@ -1,6 +1,7 @@
 import React from 'react';
-import { Box, Button, useTheme, useMediaQuery } from '@mui/material';
+import { Box, Button, useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 interface FilterTabsProps {
   categories: string[];
@@ -13,8 +14,8 @@ const FilterTabs: React.FC<FilterTabsProps> = ({
   activeCategory,
   onCategoryChange,
 }) => {
-  const theme = useTheme();
-  const isDarkMode = theme.palette.mode === 'dark';
+  const { isDarkMode } = useThemeMode();
+  const theme = useThemeMode().theme;
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
@@ -32,7 +33,10 @@ const FilterTabs: React.FC<FilterTabsProps> = ({
     >
       {categories.map((category, index) => {
         const isActive = activeCategory === category;
-        const label = category === 'all' ? 'All' : category.charAt(0).toUpperCase() + category.slice(1);
+        const label =
+          category === 'all'
+            ? 'All'
+            : category.charAt(0).toUpperCase() + category.slice(1);
 
         return (
           <motion.div
@@ -62,25 +66,21 @@ const FilterTabs: React.FC<FilterTabsProps> = ({
                     ? 'transparent'
                     : 'rgba(255, 255, 255, 0.2)'
                   : isActive
-                  ? 'transparent'
-                  : 'rgba(0, 0, 0, 0.2)',
+                    ? 'transparent'
+                    : 'rgba(0, 0, 0, 0.2)',
                 bgcolor: isActive
                   ? 'primary.main'
                   : isDarkMode
-                  ? 'rgba(255, 255, 255, 0.05)'
-                  : 'rgba(0, 0, 0, 0.05)',
-                color: isActive
-                  ? 'primary.contrastText'
-                  : 'text.primary',
+                    ? 'rgba(255, 255, 255, 0.05)'
+                    : 'rgba(0, 0, 0, 0.05)',
+                color: isActive ? 'primary.contrastText' : 'text.primary',
                 '&:hover': {
                   bgcolor: isActive
                     ? 'primary.dark'
                     : isDarkMode
-                    ? 'rgba(255, 255, 255, 0.1)'
-                    : 'rgba(0, 0, 0, 0.1)',
-                  borderColor: isActive
-                    ? 'transparent'
-                    : 'primary.main',
+                      ? 'rgba(255, 255, 255, 0.1)'
+                      : 'rgba(0, 0, 0, 0.1)',
+                  borderColor: isActive ? 'transparent' : 'primary.main',
                   transform: 'translateY(-2px)',
                   boxShadow: isActive
                     ? '0 4px 12px rgba(156, 39, 176, 0.3)'

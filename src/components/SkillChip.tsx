@@ -1,13 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
-import {
-  Box,
-  Typography,
-  Chip,
-  LinearProgress,
-  useTheme,
-  Portal,
-} from '@mui/material';
+import { Box, Typography, Chip, LinearProgress, Portal } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useThemeMode } from '@/hooks/useThemeMode';
 
 interface Skill {
   name: string;
@@ -22,8 +16,7 @@ interface SkillChipProps {
 }
 
 const SkillChip: React.FC<SkillChipProps> = ({ skill }) => {
-  const theme = useTheme();
-  const isDark = theme.palette.mode === 'dark';
+  const { isDarkMode } = useThemeMode();
   const [hovered, setHovered] = useState(false);
   const [pos, setPos] = useState({ top: 0, left: 0 });
   const chipRef = useRef<HTMLDivElement>(null);
@@ -50,10 +43,10 @@ const SkillChip: React.FC<SkillChipProps> = ({ skill }) => {
     return () => window.removeEventListener('scroll', updatePosition);
   }, [hovered]);
 
-  const popupBg = isDark
+  const popupBg = isDarkMode
     ? 'rgba(18, 18, 28, 0.98)'
     : 'rgba(255, 255, 255, 0.99)';
-  const borderColor = isDark
+  const borderColor = isDarkMode
     ? 'rgba(156, 39, 176, 0.35)'
     : 'rgba(156, 39, 176, 0.2)';
 
@@ -69,15 +62,15 @@ const SkillChip: React.FC<SkillChipProps> = ({ skill }) => {
           onMouseLeave={() => setHovered(false)}
           sx={{
             cursor: 'pointer',
-            bgcolor: isDark
+            bgcolor: isDarkMode
               ? 'rgba(156, 39, 176, 0.12)'
               : 'rgba(156, 39, 176, 0.06)',
-            border: `1px solid ${isDark ? 'rgba(156, 39, 176, 0.3)' : 'rgba(156, 39, 176, 0.15)'}`,
-            color: isDark ? '#fff' : '#9c27b0',
+            border: `1px solid ${isDarkMode ? 'rgba(156, 39, 176, 0.3)' : 'rgba(156, 39, 176, 0.15)'}`,
+            color: isDarkMode ? '#fff' : '#9c27b0',
             fontWeight: 600,
             fontSize: '0.8rem',
             '&:hover': {
-              bgcolor: isDark
+              bgcolor: isDarkMode
                 ? 'rgba(156, 39, 176, 0.25)'
                 : 'rgba(156, 39, 176, 0.18)',
               boxShadow: '0 4px 20px rgba(156, 39, 176, 0.25)',
@@ -179,7 +172,7 @@ const SkillChip: React.FC<SkillChipProps> = ({ skill }) => {
                     sx={{
                       height: 4,
                       borderRadius: 2,
-                      bgcolor: isDark
+                      bgcolor: isDarkMode
                         ? 'rgba(255,255,255,0.08)'
                         : 'rgba(0,0,0,0.08)',
                       '& .MuiLinearProgress-bar': {
@@ -208,7 +201,7 @@ const SkillChip: React.FC<SkillChipProps> = ({ skill }) => {
                 <Typography
                   variant="caption"
                   sx={{
-                    color: isDark
+                    color: isDarkMode
                       ? 'rgba(255,255,255,0.38)'
                       : 'rgba(0,0,0,0.38)',
                     fontSize: '0.62rem',
