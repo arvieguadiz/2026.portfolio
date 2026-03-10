@@ -57,7 +57,7 @@ const Hero: React.FC = () => {
             color="primary"
             sx={{ fontWeight: 600, mb: 2, letterSpacing: 2 }}
           >
-            HI, I'M ARVIE BENITO
+            HI, I'M CHRISTIAN ARVIE BENITO
           </Typography>
           <Typography
             variant="h1"
@@ -72,15 +72,15 @@ const Hero: React.FC = () => {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Fullstack MERN <br /> Developer
+            Fullstack Web <br /> Developer
           </Typography>
           <Typography
             variant="body1"
             color="text.secondary"
             sx={{ maxWidth: '600px', mx: 'auto', mb: 5, fontSize: '1.1rem' }}
           >
-            Specializing in MongoDB, Express, React, and Node.js. Defining
-            modern backend architectures and intuitive frontend experiences.
+            I specialize in building scalable web applications using the MERN stack (MongoDB, Express, React, Node.js).
+            I enjoy crafting intuitive user interfaces and robust backend architectures to solve real-world problems.
           </Typography>
 
           <Stack
