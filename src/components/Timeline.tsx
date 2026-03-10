@@ -17,26 +17,26 @@ interface TimelineItemProps {
 const timelineData = [
   {
     title: 'Fullstack Web Developer',
-    company: 'Freelance / Projects',
-    date: '2023 - Present',
+    company: 'The Penbrothers International, Inc.',
+    date: '2022 - Present',
     description:
-      'Architecting and developing scalable MERN stack applications. Designing REST APIs and building interactive React frontends.',
+      'Developing and maintaining web applications using React, Node.js, TypeScript, Express and MySQL. Implementing responsive designs, optimizing performance, and collaborating with cross-functional teams to deliver high-quality software solutions.',
     icon: <Code size={20} />,
   },
   {
-    title: 'Frontend Developer',
-    company: 'Tech Startup',
-    date: '2021 - 2023',
+    title: 'Junior Programmer',
+    company: 'New Media Services',
+    date: '2019 - 2021',
     description:
-      'Specialized in creating responsive UIs using React, Redux, and modern CSS frameworks. Reduced load times by optimizing component renders.',
+      'Contributed to the development of web applications and internal tools using React, Node.js, and MySQL. Collaborated on responsive designs and optimized performance across multiple projects.',
     icon: <Briefcase size={20} />,
   },
   {
-    title: 'Computer Science',
-    company: 'University Data',
-    date: '2017 - 2021',
+    title: 'Bachelor of Science in Information Technology',
+    company: 'Pangasinan State University - Urdaneta City Campus',
+    date: '2014 - 2018',
     description:
-      'Studied algorithms, data structures, and software engineering principles. Graduated with honors.',
+      'Graduated with a degree in Information Technology, gaining a strong foundation in programming, database management, and software development principles.',
     icon: <GraduationCap size={20} />,
   },
 ];
