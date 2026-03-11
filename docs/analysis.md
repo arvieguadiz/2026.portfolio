@@ -73,6 +73,12 @@ Instead of using the standard Intersection Observer API, this project implements
 - **Lazy Loading**: `LazyImage` component ensures images are only loaded when they enter the viewport.
 - **Asset Formats**: Uses modern formats and external placeholders for flexible development.
 
+### 4.3 PWA Support
+
+- **Offline Capability**: Integrated `vite-plugin-pwa` to provide a Progressive Web App experience.
+- **Auto-Update**: Configured for automatic service worker updates.
+- **Manifest**: Custom web manifest defined for a native-like experience on mobile devices.
+
 ## 5. Integration Details
 
 - **EmailJS**: Integrated in the `Contact` page to handle form submissions without a dedicated backend server.
