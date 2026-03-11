@@ -14,11 +14,31 @@ import SEO from '@/components/SEO';
 import { Send, Linkedin, Github as GithubIcon, Mail } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { useThemeMode } from '@/hooks/useThemeMode';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { useTranslation } from 'react-i18next';
+import { trackEvent } from '@/components/Analytics';
+
+const contactSchema = (t: any) =>
+  z.object({
+    user_name: z.string().min(2, t('contact.name') + ' must be at least 2 characters'),
+    user_email: z.string().email('Please enter a valid email address'),
+    subject: z.string().optional(),
+    message: z.string().min(10, t('contact.message') + ' must be at least 10 characters'),
+  });
+
+type ContactFormData = {
+  user_name: string;
+  user_email: string;
+  subject?: string;
+  message: string;
+};
 
 const Contact: React.FC = () => {
+  const { t } = useTranslation();
   const { isDarkMode } = useThemeMode();
   const form = useRef<HTMLFormElement>(null);
-
   const [loading, setLoading] = useState(false);
   const [snackbar, setSnackbar] = useState<{
     open: boolean;
@@ -30,29 +50,21 @@ const Contact: React.FC = () => {
     severity: 'success',
   });
 
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    resolver: zodResolver(contactSchema(t)),
+  });
+
   const handleCloseSnackbar = () => {
     setSnackbar((prev) => ({ ...prev, open: false }));
   };
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const onSubmit = () => {
     if (!form.current) return;
-
-    // Optional: Add basic validation here if needed
-    const formData = new FormData(form.current);
-    if (
-      !formData.get('user_name') ||
-      !formData.get('user_email') ||
-      !formData.get('message')
-    ) {
-      setSnackbar({
-        open: true,
-        message: 'Please fill in all required fields.',
-        severity: 'error',
-      });
-      return;
-    }
 
     setLoading(true);
 
@@ -66,16 +78,17 @@ const Contact: React.FC = () => {
       .then(
         (result) => {
           console.log(result.text);
+          trackEvent('contact_form_success');
           setSnackbar({
             open: true,
-            message: 'Message sent successfully!',
+            message: t('contact.success'),
             severity: 'success',
           });
-          form.current?.reset();
+          reset();
           setLoading(false);
         },
         (error) => {
-          console.log(error.text);
+          console.error(error.text);
           setSnackbar({
             open: true,
             message:
@@ -101,8 +114,8 @@ const Contact: React.FC = () => {
     <>
       <SEO page={seoData} />
       <Box id="contact" sx={{ py: 10 }}>
-        <SectionHeading subtitle="Have a project in mind or just want to say hi? Feel free to reach out.">
-          Let's Connect
+        <SectionHeading subtitle={t('contact.subtitle')}>
+          {t('contact.title')}
         </SectionHeading>
 
         <Grid container spacing={4} justifyContent="center">
@@ -111,7 +124,7 @@ const Contact: React.FC = () => {
               <Box
                 component="form"
                 ref={form}
-                onSubmit={sendEmail}
+                onSubmit={handleSubmit(onSubmit)}
                 sx={{ mt: 2 }}
               >
                 <Grid container spacing={3}>
@@ -119,9 +132,10 @@ const Contact: React.FC = () => {
                     <TextField
                       fullWidth
                       id="name"
-                      name="user_name"
-                      required
-                      label="Name"
+                      {...register('user_name')}
+                      error={!!errors.user_name}
+                      helperText={errors.user_name?.message}
+                      label={t('contact.name')}
                       variant="outlined"
                       sx={{
                         '& .MuiOutlinedInput-root': {
@@ -137,10 +151,11 @@ const Contact: React.FC = () => {
                     <TextField
                       fullWidth
                       id="email"
-                      name="user_email"
                       type="email"
-                      required
-                      label="Email"
+                      {...register('user_email')}
+                      error={!!errors.user_email}
+                      helperText={errors.user_email?.message}
+                      label={t('contact.email')}
                       variant="outlined"
                       sx={{
                         '& .MuiOutlinedInput-root': {
@@ -156,8 +171,10 @@ const Contact: React.FC = () => {
                     <TextField
                       fullWidth
                       id="subject"
-                      name="subject"
-                      label="Subject"
+                      {...register('subject')}
+                      error={!!errors.subject}
+                      helperText={errors.subject?.message}
+                      label={t('contact.subject')}
                       variant="outlined"
                       sx={{
                         '& .MuiOutlinedInput-root': {
@@ -173,9 +190,10 @@ const Contact: React.FC = () => {
                     <TextField
                       fullWidth
                       id="message"
-                      name="message"
-                      required
-                      label="Message"
+                      {...register('message')}
+                      error={!!errors.message}
+                      helperText={errors.message?.message}
+                      label={t('contact.message')}
                       multiline
                       rows={4}
                       variant="outlined"
@@ -211,7 +229,7 @@ const Contact: React.FC = () => {
                         boxShadow: '0 8px 16px rgba(156, 39, 176, 0.3)',
                       }}
                     >
-                      {loading ? 'Sending...' : 'Send Message'}
+                      {loading ? t('contact.sending') : t('contact.send')}
                     </Button>
                   </Grid>
                 </Grid>

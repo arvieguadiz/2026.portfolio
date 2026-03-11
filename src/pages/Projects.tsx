@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Box, Typography, Button, Stack, Link } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,12 +11,13 @@ import SectionHeading from '@/components/SectionHeading';
 import FilterTabs from '@/components/FilterTabs';
 import LazyImage from '@/components/LazyImage';
 import SEO from '@/components/SEO';
-import { ExternalLink, Github } from 'lucide-react';
+import { Github } from 'lucide-react';
 import { mockProjects } from '@/data/projects';
 import { useThemeMode } from '@/hooks/useThemeMode';
 
 const Projects: React.FC = () => {
   const { isDarkMode } = useThemeMode();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { items, filter } = useSelector((state: RootState) => state.projects);
 
@@ -180,14 +182,16 @@ const Projects: React.FC = () => {
 
                       <Stack direction="row" spacing={2}>
                         <Button
-                          startIcon={<ExternalLink size={18} />}
-                          variant="text"
-                          color={isDarkMode ? 'secondary' : 'primary'}
-                          component={Link}
-                          href={project.link}
-                          sx={{ fontWeight: 800 }}
+                          variant="contained"
+                          color="primary"
+                          onClick={() => navigate(`/projects/${project.id}`)}
+                          sx={{ 
+                            fontWeight: 800,
+                            borderRadius: '8px',
+                            textTransform: 'none'
+                          }}
                         >
-                          Live Demo
+                          View Details
                         </Button>
                         <Button
                           startIcon={<Github size={18} />}

@@ -9,6 +9,7 @@ const GlassContainer = styled(MotionPaper)(({ theme }) => ({
   padding: theme.spacing(4),
   display: 'flex',
   flexDirection: 'column',
+  height: '100%',
   position: 'relative',
   overflow: 'hidden',
   '&:hover': {

@@ -1,14 +1,16 @@
 import React from 'react';
-import { Box, Typography, Stack } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import GlassCard from '@/components/GlassCard';
 import SectionHeading from '@/components/SectionHeading';
 import Timeline from '@/components/Timeline';
 import Terminal from '@/components/Terminal';
-import SkillChip, { type Skill } from '@/components/SkillChip';
+import SkillsGrid from '@/components/SkillsGrid';
+import { type Skill } from '@/components/SkillChip';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import SEO from '@/components/SEO';
 import { testimonials } from '@/data/testimonials';
+import { useTranslation } from 'react-i18next';
 
 const skills: Skill[] = [
   {
@@ -71,6 +73,7 @@ const skills: Skill[] = [
 ];
 
 const About: React.FC = () => {
+  const { t } = useTranslation();
   const seoData = {
     title: 'About Arvie Benito | Fullstack MERN Developer',
     description:
@@ -85,28 +88,34 @@ const About: React.FC = () => {
     <>
       <SEO page={seoData} />
       <Box id="about" sx={{ py: 10 }}>
-        <SectionHeading subtitle="A quick overview of who I am and what I do.">
-          About Me
+        <SectionHeading subtitle={t('about.subtitle')}>
+          {t('about.title')}
         </SectionHeading>
 
-        <Grid container spacing={4}>
-          <Grid size={{ xs: 12, md: 7 }}>
+        <Grid container spacing={4} sx={{ alignItems: 'stretch' }}>
+          <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex' }}>
             <GlassCard delay={0.1}>
               <Typography
                 component="h3"
                 variant="h5"
                 gutterBottom
-                sx={{ fontWeight: 600 }}
+                sx={{ fontWeight: 600, mb: 3 }}
               >
                 The Journey
               </Typography>
-              <Typography variant="body1" paragraph color="text.secondary">
-                I am a Fullstack Web Developer specialized in the MERN stack
-                (MongoDB, Express, React, Node.js). My passion lies in building
-                scalable, end-to-end applications that solve real-world
-                problems.
+              <Typography
+                variant="body1"
+                paragraph
+                color="text.secondary"
+                sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}
+              >
+                {t('about.description')}
               </Typography>
-              <Typography variant="body1" color="text.secondary">
+              <Typography
+                variant="body1"
+                color="text.secondary"
+                sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}
+              >
                 From designing robust server-side architectures and RESTful APIs
                 to crafting interactive, responsive front-end interfaces, I
                 enjoy being involved in every step of the development lifecycle.
@@ -114,33 +123,24 @@ const About: React.FC = () => {
             </GlassCard>
           </Grid>
 
-          <Grid size={{ xs: 12, md: 5 }}>
+          <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex' }}>
             <GlassCard delay={0.2}>
               <Typography
                 component="h3"
                 variant="h5"
                 gutterBottom
-                sx={{ fontWeight: 600 }}
+                sx={{ fontWeight: 600, mb: 3 }}
               >
                 Tech Stack
               </Typography>
               <Typography
                 variant="caption"
                 color="text.secondary"
-                sx={{ display: 'block', mb: 2 }}
+                sx={{ display: 'block', mb: 3 }}
               >
                 Hover over a skill to see proficiency & related project
               </Typography>
-              <Stack
-                direction="row"
-                flexWrap="wrap"
-                gap={1.5}
-                sx={{ mt: 1, overflow: 'visible' }}
-              >
-                {skills.map((skill) => (
-                  <SkillChip key={skill.name} skill={skill} />
-                ))}
-              </Stack>
+              <SkillsGrid skills={skills} />
             </GlassCard>
           </Grid>
 
