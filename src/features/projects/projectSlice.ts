@@ -11,6 +11,10 @@ export interface Project {
   category: ProjectCategory;
   link?: string;
   github?: string;
+  fullDescription?: string;
+  challenges?: string[];
+  architecture?: string;
+  techStack?: string[];
 }
 
 interface ProjectState {

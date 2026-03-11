@@ -1,4 +1,5 @@
 import React, { Suspense, useMemo } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { Box } from '@mui/material';
 import MainLayout from '@/layouts/MainLayout';
 import Hero from '@/pages/Hero';
@@ -9,6 +10,7 @@ import ErrorBoundary from '@/components/ErrorBoundary';
 const AboutLazy = React.lazy(() => import('@/pages/About'));
 const ProjectsLazy = React.lazy(() => import('@/pages/Projects'));
 const ContactLazy = React.lazy(() => import('@/pages/Contact'));
+const ProjectDetailLazy = React.lazy(() => import('@/pages/ProjectDetail'));
 
 const pageData = {
   hero: {
@@ -39,20 +41,37 @@ function App() {
   return (
     <ErrorBoundary>
       <MainLayout>
-        <SectionObserver
-          sections={sections}
-          defaultTitle={pageData.hero.title}
-        />
-        <Hero />
-        <Suspense fallback={<Loading />}>
-          <AboutLazy />
-        </Suspense>
-        <Suspense fallback={<Loading />}>
-          <ProjectsLazy />
-        </Suspense>
-        <Suspense fallback={<Loading />}>
-          <ContactLazy />
-        </Suspense>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <SectionObserver
+                  sections={sections}
+                  defaultTitle={pageData.hero.title}
+                />
+                <Hero />
+                <Suspense fallback={<Loading />}>
+                  <AboutLazy />
+                </Suspense>
+                <Suspense fallback={<Loading />}>
+                  <ProjectsLazy />
+                </Suspense>
+                <Suspense fallback={<Loading />}>
+                  <ContactLazy />
+                </Suspense>
+              </>
+            }
+          />
+          <Route
+            path="/projects/:id"
+            element={
+              <Suspense fallback={<Loading />}>
+                <ProjectDetailLazy />
+              </Suspense>
+            }
+          />
+        </Routes>
       </MainLayout>
     </ErrorBoundary>
   );
