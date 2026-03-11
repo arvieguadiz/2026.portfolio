@@ -13,10 +13,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { downloadResume } from '@/features/ui/uiSlice';
 import { type RootState } from '@/app/store';
 import { useThemeMode } from '@/hooks/useThemeMode';
+import { useTranslation } from 'react-i18next';
 
 import ThemeToggle from './ThemeToggle';
+import LanguageSwitcher from './LanguageSwitcher';
 
 const Navbar: React.FC = () => {
+  const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
   const { isDarkMode } = useThemeMode();
   const dispatch = useDispatch();
@@ -40,7 +43,11 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = ['About', 'Projects', 'Contact'];
+  const navItems = [
+    { key: 'about', label: t('nav.about') },
+    { key: 'projects', label: t('nav.projects') },
+    { key: 'contact', label: t('nav.contact') },
+  ];
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId.toLowerCase());
@@ -109,9 +116,9 @@ const Navbar: React.FC = () => {
             <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 4 }}>
               {navItems.map((item, index) => (
                 <Button
-                  key={item}
+                  key={item.key}
                   component={motion.button}
-                  onClick={() => scrollToSection(item)}
+                  onClick={() => scrollToSection(item.key)}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
@@ -124,7 +131,7 @@ const Navbar: React.FC = () => {
                     },
                   }}
                 >
-                  {item}
+                  {item.label}
                 </Button>
               ))}
             </Box>
@@ -144,8 +151,9 @@ const Navbar: React.FC = () => {
                 fontWeight: 600,
               }}
             >
-              Resume
+              {t('nav.resume')}
             </Button>
+            <LanguageSwitcher />
             <ThemeToggle />
           </Box>
         </Toolbar>

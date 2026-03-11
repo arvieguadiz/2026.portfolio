@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "about": "Tungkol sa Akin",
+    "projects": "Mga Proyekto",
+    "contact": "Makipag-ugnayan",
+    "resume": "Resume"
+  },
+  "hero": {
+    "greeting": "Kumusta, Ako si",
+    "role": "Fullstack MERN Developer",
+    "subtitle": "Bumubuo ng matatag, scalable, at user-centric na web applications gamit ang modernong teknolohiya.",
+    "cta_projects": "Tingnan ang mga Proyekto",
+    "cta_contact": "Makipag-ugnayan sa Akin"
+  },
+  "about": {
+    "title": "Tungkol sa Akin",
+    "subtitle": "Masigasig na developer na nakatuon sa paggawa ng epekto sa pamamagitan ng code.",
+    "description": "Ako ay isang Fullstack Developer na nagpapakadalubhasa sa MERN stack. Mahilig akong lumutas ng mga kumplikadong problema at bumuo ng mahusay na mga sistema."
+  },
+  "contact": {
+    "title": "Makipag-ugnayan",
+    "subtitle": "Mayroon ka bang proyekto o nais mo lang mag-hi? Huwag mag-atubiling lumapit.",
+    "name": "Pangalan",
+    "email": "Email",
+    "subject": "Paksa",
+    "message": "Mensahe",
+    "send": "Ipadala ang Mensahe",
+    "sending": "Ipinapadala...",
+    "success": "Matagumpay na naipadala ang mensahe!"
+  }
+}

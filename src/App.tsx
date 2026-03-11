@@ -5,6 +5,7 @@ import MainLayout from '@/layouts/MainLayout';
 import Hero from '@/pages/Hero';
 import SectionObserver from '@/components/SectionObserver';
 import ErrorBoundary from '@/components/ErrorBoundary';
+import Analytics from '@/components/Analytics';
 
 // Dynamic imports for code splitting
 const AboutLazy = React.lazy(() => import('@/pages/About'));
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <ErrorBoundary>
+      <Analytics />
       <MainLayout>
         <Routes>
           <Route

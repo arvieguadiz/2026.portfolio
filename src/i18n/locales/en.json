@@ -1,0 +1,31 @@
+{
+  "nav": {
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "hero": {
+    "greeting": "Hi, I'm",
+    "role": "Fullstack MERN Developer",
+    "subtitle": "Building robust, scalable, and user-centric web applications with modern technologies.",
+    "cta_projects": "View Projects",
+    "cta_contact": "Contact Me"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Passionate developer with a focus on creating impact through code.",
+    "description": "I am a Fullstack Developer specializing in the MERN stack. I love solving complex problems and building efficient systems."
+  },
+  "contact": {
+    "title": "Let's Connect",
+    "subtitle": "Have a project in mind or just want to say hi? Feel free to reach out.",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully!"
+  }
+}

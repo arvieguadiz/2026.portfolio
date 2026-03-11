@@ -6,13 +6,17 @@ import { useDispatch } from 'react-redux';
 import SEO from '@/components/SEO';
 import { downloadResume } from '@/features/ui/uiSlice';
 import { useThemeMode } from '@/hooks/useThemeMode';
+import { useTranslation } from 'react-i18next';
+import { trackEvent } from '@/components/Analytics';
 
 const Hero: React.FC = () => {
+  const { t } = useTranslation();
   const { isDarkMode } = useThemeMode();
   const dispatch = useDispatch();
 
   const handleDownloadResume = () => {
     dispatch(downloadResume());
+    trackEvent('resume_download', { page: 'hero' });
     const link = document.createElement('a');
     link.href = '/Resume_Benito.pdf';
     link.download = 'Arvie_Benito_Resume.pdf';
@@ -57,7 +61,7 @@ const Hero: React.FC = () => {
             color="primary"
             sx={{ fontWeight: 600, mb: 2, letterSpacing: 2 }}
           >
-            HI, I'M CHRISTIAN ARVIE BENITO
+            {t('hero.greeting')} CHRISTIAN ARVIE BENITO
           </Typography>
           <Typography
             variant="h1"
@@ -72,15 +76,15 @@ const Hero: React.FC = () => {
               WebkitTextFillColor: 'transparent',
             }}
           >
-            Fullstack Web <br /> Developer
+            {t('hero.role').split(' ')[0]} <br />{' '}
+            {t('hero.role').split(' ').slice(1).join(' ')}
           </Typography>
           <Typography
             variant="body1"
             color="text.secondary"
             sx={{ maxWidth: '600px', mx: 'auto', mb: 5, fontSize: '1.1rem' }}
           >
-            I specialize in building scalable web applications using the MERN stack (MongoDB, Express, React, Node.js).
-            I enjoy crafting intuitive user interfaces and robust backend architectures to solve real-world problems.
+            {t('hero.subtitle')}
           </Typography>
 
           <Stack
@@ -98,7 +102,7 @@ const Hero: React.FC = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Download Resume
+              {t('nav.resume')}
             </Button>
             <Button
               variant="outlined"
@@ -135,7 +139,7 @@ const Hero: React.FC = () => {
                 }
               }}
             >
-              Let's Talk
+              {t('hero.cta_contact')}
             </Button>
           </Stack>
         </motion.div>

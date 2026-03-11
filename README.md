@@ -1,6 +1,6 @@
 # Modern Portfolio Website
 
-A high-performance, interactive personal portfolio website built with **React 19**, **Vite**, and **TypeScript**. Featuring a sleek "Glassmorphism" design, custom terminal emulator, and smooth animations.
+A high-performance, interactive personal portfolio website built with **React 19**, **Vite**, and **TypeScript**. Featuring a sleek "Glassmorphism" design, an enhanced terminal emulator, and detailed project case studies.
 
 ## 🚀 Live Demo
 
@@ -9,21 +9,30 @@ A high-performance, interactive personal portfolio website built with **React 19
 ## ✨ Features
 
 - **Glassmorphism UI**: Modern aesthetic with blurred backgrounds and neon accents using MUI v7.
-- **Interactive Terminal**: A functional command-line interface in the Hero section.
+- **Interactive Terminal**: A refactored, hook-based terminal with a mock hierarchical file system and dynamic theming.
+- **Detailed Case Studies**: Dedicated project pages exploring technical challenges, architecture, and tech stacks.
+- **Visual Skills Grid**: Interactive proficiency visualization with category-based iconography.
 - **Dark/Light Mode**: Full theme support with persistent preferences.
 - **Custom Animated Cursor**: Interactive cursor with spring physics.
 - **Section-Aware Tab Titles**: Browser tab title updates automatically based on the visible section.
 - **Filterable Projects**: Browse projects by category (Frontend, Backend, Fullstack, Mobile).
-- **Contact Integration**: Fully functional contact form powered by EmailJS.
+- **Contact Integration**: Fully functional contact form powered by EmailJS with **Zod** validation and **React Hook Form**.
+- **Internationalization (i18n)**: Multi-language support (English & Tagalog) with automatic language detection and a custom switcher.
+- **Privacy-Focused Analytics**: Custom analytics integration for tracking page views and engagement events without invasive cookies.
+- **Enhanced Security**: Robust security posture with Content Security Policy (CSP) and optimized HTTP headers.
 - **SEO Optimized**: Dynamic metadata and structured data using React Helmet.
 - **Responsive Design**: Fully optimized for mobile, tablet, and desktop screens.
+- **PWA Ready**: Installable as a progressive web app with offline support.
 
 ## 🛠️ Tech Stack
 
 - **Frontend**: React 19, TypeScript, Vite
+- **Routing**: React Router v7
 - **Styling**: Material UI (MUI) v7, Emotion, CSS-in-JS
 - **Animations**: Framer Motion
 - **State Management**: Redux Toolkit
+- **Validation**: Zod, React Hook Form
+- **Internationalization**: i18next
 - **Icons**: Lucide React, MUI Icons
 - **Deployment**: [Your Hosting Provider, e.g., Vercel, Netlify]
 
@@ -36,9 +45,10 @@ src/
 ├── components/     # Reusable UI components
 ├── data/           # Mock data for projects and testimonials
 ├── features/       # Feature-specific logic (Redux slices)
-├── hooks/          # Custom React hooks
+├── hooks/          # Custom React hooks (useTerminal, useThemeMode)
+├── i18n/           # Internationalization configuration and translations
 ├── layouts/        # Page layout components
-├── pages/          # Main page sections (Hero, About, Projects, Contact)
+├── pages/          # Page sections and Detail views
 ├── theme/          # MUI theme configuration
 └── main.tsx        # Application entry point
 ```

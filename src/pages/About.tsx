@@ -10,6 +10,7 @@ import { type Skill } from '@/components/SkillChip';
 import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import SEO from '@/components/SEO';
 import { testimonials } from '@/data/testimonials';
+import { useTranslation } from 'react-i18next';
 
 const skills: Skill[] = [
   {
@@ -72,6 +73,7 @@ const skills: Skill[] = [
 ];
 
 const About: React.FC = () => {
+  const { t } = useTranslation();
   const seoData = {
     title: 'About Arvie Benito | Fullstack MERN Developer',
     description:
@@ -86,8 +88,8 @@ const About: React.FC = () => {
     <>
       <SEO page={seoData} />
       <Box id="about" sx={{ py: 10 }}>
-        <SectionHeading subtitle="A quick overview of who I am and what I do.">
-          About Me
+        <SectionHeading subtitle={t('about.subtitle')}>
+          {t('about.title')}
         </SectionHeading>
 
         <Grid container spacing={4} sx={{ alignItems: 'stretch' }}>
@@ -107,10 +109,7 @@ const About: React.FC = () => {
                 color="text.secondary"
                 sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}
               >
-                I am a Fullstack Web Developer specialized in the MERN stack
-                (MongoDB, Express, React, Node.js). My passion lies in building
-                scalable, end-to-end applications that solve real-world
-                problems.
+                {t('about.description')}
               </Typography>
               <Typography
                 variant="body1"
