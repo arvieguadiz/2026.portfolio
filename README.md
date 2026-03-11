@@ -1,59 +1,97 @@
-# Premium Creative Developer Portfolio (2026)
+# Modern Portfolio Website
 
-A high-end, immersive personal portfolio built with a focus on modern aesthetics (**Glassmorphism**), smooth performance, and advanced animations.
+A high-performance, interactive personal portfolio website built with **React 19**, **Vite**, and **TypeScript**. Featuring a sleek "Glassmorphism" design, custom terminal emulator, and smooth animations.
+
+## 🚀 Live Demo
+
+[Link to your live site here]
 
 ## ✨ Features
 
-- **Glassmorphism Design**: Multi-layered backdrop blurs, subtle borders, and dynamic shadows using MUI v7.
-- **Scrollytelling**: High-impact scroll-triggered animations powered by **Framer Motion**.
-- **Custom Visuals**:
-  - Spring-based custom blob cursor.
-  - Dynamic radial glow background that follows page flow.
-  - Interactive project grid with hover-lift effects.
-- **State Management**: Redux Toolkit used for project data and UI state orchestration.
-- **Responsive**: Fully optimized for mobile, tablet, and desktop experiences.
-- **SEO Optimized**: Meta tags, semantic HTML, and performant asset loading.
+- **Glassmorphism UI**: Modern aesthetic with blurred backgrounds and neon accents using MUI v7.
+- **Interactive Terminal**: A functional command-line interface in the Hero section.
+- **Dark/Light Mode**: Full theme support with persistent preferences.
+- **Custom Animated Cursor**: Interactive cursor with spring physics.
+- **Section-Aware Tab Titles**: Browser tab title updates automatically based on the visible section.
+- **Filterable Projects**: Browse projects by category (Frontend, Backend, Fullstack, Mobile).
+- **Contact Integration**: Fully functional contact form powered by EmailJS.
+- **SEO Optimized**: Dynamic metadata and structured data using React Helmet.
+- **Responsive Design**: Fully optimized for mobile, tablet, and desktop screens.
 
-## 🚀 Tech Stack
+## 🛠️ Tech Stack
 
-- **Core**: [React 19](https://reactjs.org/), [TypeScript](https://www.typescriptlang.org/)
-- **Build Tool**: [Vite](https://vitejs.dev/)
-- **Styling & UI**: [Material-UI (MUI) v7](https://mui.com/), [Emotion](https://emotion.sh/)
-- **Animation**: [Framer Motion 12](https://www.framer.com/motion/)
-- **State**: [Redux Toolkit](https://redux-toolkit.js.org/)
-- **Icons**: [Lucide React](https://lucide.dev/)
+- **Frontend**: React 19, TypeScript, Vite
+- **Styling**: Material UI (MUI) v7, Emotion, CSS-in-JS
+- **Animations**: Framer Motion
+- **State Management**: Redux Toolkit
+- **Icons**: Lucide React, MUI Icons
+- **Deployment**: [Your Hosting Provider, e.g., Vercel, Netlify]
+
+## 📦 Project Structure
+
+```text
+src/
+├── app/            # Redux store configuration
+├── assets/         # Images and static assets
+├── components/     # Reusable UI components
+├── data/           # Mock data for projects and testimonials
+├── features/       # Feature-specific logic (Redux slices)
+├── hooks/          # Custom React hooks
+├── layouts/        # Page layout components
+├── pages/          # Main page sections (Hero, About, Projects, Contact)
+├── theme/          # MUI theme configuration
+└── main.tsx        # Application entry point
+```
 
 ## 🛠️ Getting Started
 
 ### Prerequisites
 
-- Node.js (v18+)
+- Node.js (v18 or higher)
 - npm or yarn
 
 ### Installation
 
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Install dependencies:
-   ```bash
-   npm install
-   ```
-3. Start the development server:
-   ```bash
-   npm run dev
-   ```
+1.  Clone the repository:
 
-## 📂 Project Structure
+    ```bash
+    git clone https://github.com/arvieguadiz/2026.portfolio.git
+    cd 2026.portfolio
+    ```
 
-- `src/app`: Redux store configuration.
-- `src/components`: Reusable UI components (GlassCard, CustomCursor, etc.).
-- `src/features`: Redux slices for projects and UI state.
-- `src/layouts`: Main application layout wrappers.
-- `src/pages`: Individual section implementations (Hero, About, Projects, Contact).
-- `src/theme`: Centralized MUI theme configuration.
+2.  Install dependencies:
+
+    ```bash
+    npm install
+    ```
+
+3.  Configure environment variables:
+    Create a `.env` file based on `.env.example` and add your EmailJS keys:
+
+    ```env
+    VITE_EMAILJS_SERVICE_ID=your_service_id
+    VITE_EMAILJS_TEMPLATE_ID=your_template_id
+    VITE_EMAILJS_PUBLIC_KEY=your_public_key
+    ```
+
+4.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+
+### Building for Production
+
+```bash
+npm run build
+```
 
 ## 📄 License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👤 Author
+
+**Arvie Benito**
+
+- GitHub: [@arvieguadiz](https://github.com/arvieguadiz)
+- LinkedIn: [Arvie Benito](https://linkedin.com/in/arviebenito)
