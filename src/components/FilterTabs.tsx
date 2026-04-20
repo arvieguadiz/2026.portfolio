@@ -1,17 +1,19 @@
 import React from 'react';
-import { Box, Button, useMediaQuery } from '@mui/material';
+import { Box, Button, useMediaQuery, alpha } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useThemeMode } from '@/hooks/useThemeMode';
 
 interface FilterTabsProps {
   categories: string[];
   activeCategory: string;
+  counts: Record<string, number>;
   onCategoryChange: (category: string) => void;
 }
 
 const FilterTabs: React.FC<FilterTabsProps> = ({
   categories,
   activeCategory,
+  counts,
   onCategoryChange,
 }) => {
   const { isDarkMode } = useThemeMode();
@@ -33,6 +35,7 @@ const FilterTabs: React.FC<FilterTabsProps> = ({
     >
       {categories.map((category, index) => {
         const isActive = activeCategory === category;
+        const count = counts[category] || 0;
         const label =
           category === 'all'
             ? 'All'
@@ -56,11 +59,14 @@ const FilterTabs: React.FC<FilterTabsProps> = ({
               size={isMobile ? 'small' : 'medium'}
               sx={{
                 borderRadius: '20px',
-                px: { xs: 2.5, sm: 3 },
+                px: { xs: 2, sm: 2.5 },
                 py: { xs: 0.75, sm: 1 },
-                fontSize: { xs: '0.875rem', sm: '1rem' },
+                fontSize: { xs: '0.875rem', sm: '0.95rem' },
                 fontWeight: isActive ? 700 : 500,
                 backdropFilter: isActive ? 'blur(8px)' : 'none',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 1,
                 borderColor: isDarkMode
                   ? isActive
                     ? 'transparent'
@@ -90,6 +96,29 @@ const FilterTabs: React.FC<FilterTabsProps> = ({
               }}
             >
               {label}
+              <Box
+                component="span"
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minWidth: '1.5rem',
+                  height: '1.5rem',
+                  borderRadius: '12px',
+                  px: 0.5,
+                  fontSize: '0.75rem',
+                  fontWeight: 800,
+                  bgcolor: isActive
+                    ? alpha('#fff', 0.2)
+                    : isDarkMode
+                      ? 'rgba(255, 255, 255, 0.1)'
+                      : 'rgba(0, 0, 0, 0.08)',
+                  color: isActive ? 'inherit' : 'primary.main',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {count}
+              </Box>
             </Button>
           </motion.div>
         );

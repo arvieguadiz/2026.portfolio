@@ -3,7 +3,7 @@ import { Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import GlassCard from '@/components/GlassCard';
 import SectionHeading from '@/components/SectionHeading';
-import Timeline from '@/components/Timeline';
+import Timeline, { type TimelineDataItem } from '@/components/Timeline';
 import Terminal from '@/components/Terminal';
 import SkillsGrid from '@/components/SkillsGrid';
 import { type Skill } from '@/components/SkillChip';
@@ -11,6 +11,7 @@ import TestimonialsCarousel from '@/components/TestimonialsCarousel';
 import SEO from '@/components/SEO';
 import { testimonials } from '@/data/testimonials';
 import { useTranslation } from 'react-i18next';
+import { Briefcase, GraduationCap, Code, Award } from 'lucide-react';
 
 const skills: Skill[] = [
   {
@@ -69,6 +70,68 @@ const skills: Skill[] = [
     category: 'Architecture',
     description: 'Designing and consuming RESTful services at scale.',
     relatedProject: 'Real-time Chat App',
+  },
+];
+
+const experienceData: TimelineDataItem[] = [
+  {
+    title: 'Fullstack Web Developer',
+    company: 'The Penbrothers International, Inc.',
+    date: '2022 - Present',
+    description:
+      'Developing and maintaining web applications using React, Node.js, TypeScript, Express and MySQL. Implementing responsive designs, optimizing performance, and collaborating with cross-functional teams to deliver high-quality software solutions.',
+    icon: <Code size={20} />,
+  },
+  {
+    title: 'Junior Programmer',
+    company: 'New Media Services',
+    date: '2019 - 2021',
+    description:
+      'Contributed to the development of web applications and internal tools using React, Node.js, and MySQL. Collaborated on responsive designs and optimized performance across multiple projects.',
+    icon: <Briefcase size={20} />,
+  },
+  {
+    title: 'Bachelor of Science in Information Technology',
+    company: 'Pangasinan State University - Urdaneta City Campus',
+    date: '2014 - 2018',
+    description:
+      'Graduated with a degree in Information Technology, gaining a strong foundation in programming, database management, and software development principles.',
+    icon: <GraduationCap size={20} />,
+  },
+];
+
+const trainingData: TimelineDataItem[] = [
+  {
+    title: 'AI Training (SPEC Framework)',
+    company: 'The Penbrothers International, Inc.',
+    date: 'Mar 2026',
+    description:
+      'Mastered the SPEC (Specify, Plan, Execute, Check) framework for advanced prompt engineering and AI communication.',
+    icon: <Award size={20} />,
+  },
+  {
+    title: 'Gen AI Hackathon',
+    company: 'The Penbrothers International, Inc.',
+    date: 'Nov 2025',
+    description:
+      'Participated in an intensive hackathon focused on building innovative solutions using Generative AI technologies.',
+    icon: <Award size={20} />,
+  },
+  {
+    title: 'Thinking Machines: AI Enablement for Professionals',
+    company: 'The Penbrothers International, Inc.',
+    date: 'Nov 2025',
+    description:
+      'Completed professional enablement training on integrating AI tools and workflows into specialized development environments.',
+    icon: <Award size={20} />,
+  },
+  {
+    title: 'AI Assistant Workshop with Cline AI',
+    company: 'The Penbrothers International, Inc.',
+    date: 'Sep 2025',
+    description:
+      'Hands-on workshop exploring the capabilities of AI assistants in streamlining coding, documentation, and system architecture tasks.',
+    icon: <Award size={20} />,
   },
 ];
 
@@ -144,8 +207,8 @@ const About: React.FC = () => {
             </GlassCard>
           </Grid>
 
-          {/* Timeline Section */}
-          <Grid size={{ xs: 12 }}>
+          {/* Timeline Section - Experience */}
+          <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex' }}>
             <GlassCard delay={0.3}>
               <Typography
                 component="h3"
@@ -155,13 +218,28 @@ const About: React.FC = () => {
               >
                 Experience & Education
               </Typography>
-              <Timeline />
+              <Timeline items={experienceData} />
+            </GlassCard>
+          </Grid>
+
+          {/* Timeline Section - Training */}
+          <Grid size={{ xs: 12, md: 6 }} sx={{ display: 'flex' }}>
+            <GlassCard delay={0.4}>
+              <Typography
+                component="h3"
+                variant="h5"
+                gutterBottom
+                sx={{ fontWeight: 600, mb: 4 }}
+              >
+                Certifications & AI Training
+              </Typography>
+              <Timeline items={trainingData} />
             </GlassCard>
           </Grid>
 
           {/* Testimonials Carousel */}
           <Grid size={{ xs: 12 }}>
-            <GlassCard delay={0.4}>
+            <GlassCard delay={0.5}>
               <Typography
                 component="h3"
                 variant="h5"
