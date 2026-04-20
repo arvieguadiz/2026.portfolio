@@ -26,15 +26,17 @@ The project adopts a hybrid organization:
 
 The application uses Redux for global state management:
 
-- **`uiSlice`**: Manages theme (dark/light), mobile menu state, and resume download status. It persists theme preferences to `localStorage`.
+- **`uiSlice`**: Manages theme modes (`light`, `dark`, `system`), mobile menu state, and resume download status. It persists theme preferences to `localStorage`.
 - **`projectSlice`**: Handles project data, loading states, and filtering logic (all, frontend, backend, fullstack, mobile).
 
 ### 3.2 Theming & Styling (MUI v7 + Emotion)
 
-The design system is built on a highly customized Material UI theme:
+The design system is built on a highly customized Material UI theme with a triple-mode synchronization system:
 
+- **Theme Modes**: Supports `light`, `dark`, and `system` preferences.
+- **System Sync**: Uses `useMediaQuery('(prefers-color-scheme: dark)')` to automatically align with the user's OS theme when in `system` mode.
 - **Glassmorphism**: Achieved using `backdropFilter: "blur(12px) saturate(180%)"` and semi-transparent backgrounds (`rgba`).
-- **Dynamic Palettes**: The theme dynamically adjusts colors and background gradients based on the `isDarkMode` state.
+- **Dynamic Palettes**: The theme dynamically adjusts colors and background gradients based on the resolved `isDarkMode` state.
 - **Component Overrides**: Extensive overrides for `MuiPaper`, `MuiButton`, and `MuiAppBar` to maintain a consistent futuristic aesthetic.
 
 ### 3.3 Interactive Components

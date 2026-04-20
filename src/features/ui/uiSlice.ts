@@ -1,14 +1,16 @@
 import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
 
+export type ThemeMode = 'light' | 'dark' | 'system';
+
 interface UiState {
-  darkMode: boolean;
+  themeMode: ThemeMode;
   menuOpen: boolean;
   hasDownloadedResume: boolean;
   resumeSnackbarOpen: boolean;
 }
 
 const initialState: UiState = {
-  darkMode: localStorage.getItem('theme') !== 'light',
+  themeMode: (localStorage.getItem('theme') as ThemeMode) || 'system',
   menuOpen: false,
   hasDownloadedResume: localStorage.getItem('hasDownloadedResume') === 'true',
   resumeSnackbarOpen: false,
@@ -18,13 +20,9 @@ const uiSlice = createSlice({
   name: 'ui',
   initialState,
   reducers: {
-    toggleTheme: (state) => {
-      state.darkMode = !state.darkMode;
-      localStorage.setItem('theme', state.darkMode ? 'dark' : 'light');
-    },
-    setTheme: (state, action: PayloadAction<boolean>) => {
-      state.darkMode = action.payload;
-      localStorage.setItem('theme', state.darkMode ? 'dark' : 'light');
+    setThemeMode: (state, action: PayloadAction<ThemeMode>) => {
+      state.themeMode = action.payload;
+      localStorage.setItem('theme', action.payload);
     },
     toggleMenu: (state) => {
       state.menuOpen = !state.menuOpen;
@@ -44,8 +42,7 @@ const uiSlice = createSlice({
 });
 
 export const {
-  toggleTheme,
-  setTheme,
+  setThemeMode,
   toggleMenu,
   closeMenu,
   downloadResume,
