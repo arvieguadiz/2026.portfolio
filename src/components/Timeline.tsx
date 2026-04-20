@@ -1,45 +1,20 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import { motion } from 'framer-motion';
-import { Briefcase, GraduationCap, Code } from 'lucide-react';
 import { useThemeMode } from '@/hooks/useThemeMode';
 
-interface TimelineItemProps {
+export interface TimelineDataItem {
   title: string;
   company: string;
   date: string;
   description: string;
   icon: React.ReactNode;
+}
+
+interface TimelineItemProps extends TimelineDataItem {
   isLast?: boolean;
   index: number;
 }
-
-const timelineData = [
-  {
-    title: 'Fullstack Web Developer',
-    company: 'The Penbrothers International, Inc.',
-    date: '2022 - Present',
-    description:
-      'Developing and maintaining web applications using React, Node.js, TypeScript, Express and MySQL. Implementing responsive designs, optimizing performance, and collaborating with cross-functional teams to deliver high-quality software solutions.',
-    icon: <Code size={20} />,
-  },
-  {
-    title: 'Junior Programmer',
-    company: 'New Media Services',
-    date: '2019 - 2021',
-    description:
-      'Contributed to the development of web applications and internal tools using React, Node.js, and MySQL. Collaborated on responsive designs and optimized performance across multiple projects.',
-    icon: <Briefcase size={20} />,
-  },
-  {
-    title: 'Bachelor of Science in Information Technology',
-    company: 'Pangasinan State University - Urdaneta City Campus',
-    date: '2014 - 2018',
-    description:
-      'Graduated with a degree in Information Technology, gaining a strong foundation in programming, database management, and software development principles.',
-    icon: <GraduationCap size={20} />,
-  },
-];
 
 const TimelineItem: React.FC<TimelineItemProps> = ({
   title,
@@ -134,10 +109,14 @@ const TimelineItem: React.FC<TimelineItemProps> = ({
   );
 };
 
-const Timeline: React.FC = () => {
+interface TimelineProps {
+  items: TimelineDataItem[];
+}
+
+const Timeline: React.FC<TimelineProps> = ({ items }) => {
   return (
     <Box sx={{ width: '100%' }}>
-      {timelineData.map((item, index) => (
+      {items.map((item, index) => (
         <TimelineItem
           key={index}
           index={index}
@@ -146,7 +125,7 @@ const Timeline: React.FC = () => {
           date={item.date}
           description={item.description}
           icon={item.icon}
-          isLast={index === timelineData.length - 1}
+          isLast={index === items.length - 1}
         />
       ))}
     </Box>

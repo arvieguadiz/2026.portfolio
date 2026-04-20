@@ -75,6 +75,7 @@ Instead of using the standard Intersection Observer API, this project implements
 ### 3.5 Visual Data Representation
 
 - **Skills Grid**: Technical skills are visually represented using an interactive grid with proficiency indicators and category-specific icons.
+- **AI Training & Experience Timelines**: The professional development section utilizes a modular, dual-timeline architecture. This separates core work experience and education from specialized AI training (SPEC Framework, Gen AI hackathons), highlighting a dedicated path in emerging technologies.
 - **Project Filter Statistics**: The `FilterTabs` component features dynamic project counts for each category. These statistics are calculated using `useMemo` in `Projects.tsx` and displayed in glassmorphism-styled badges, providing instant feedback on the portfolio's breadth.
 - **Project Case Studies**: Each project features a dedicated detail page (`ProjectDetail.tsx`) providing deep dives into challenges, architecture, and tech stacks.
 
