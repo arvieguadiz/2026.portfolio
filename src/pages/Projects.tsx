@@ -30,6 +30,16 @@ const Projects: React.FC = () => {
     return ['all', ...uniqueCategories];
   }, [projects]);
 
+  const categoryCounts = useMemo(() => {
+    const counts: Record<string, number> = {
+      all: projects.length,
+    };
+    projects.forEach((p) => {
+      counts[p.category] = (counts[p.category] || 0) + 1;
+    });
+    return counts;
+  }, [projects]);
+
   const filteredProjects = useMemo(() => {
     if (filter === 'all') return projects;
     return projects.filter((p) => p.category === filter);
@@ -97,6 +107,7 @@ const Projects: React.FC = () => {
         <FilterTabs
           categories={categories}
           activeCategory={filter}
+          counts={categoryCounts}
           onCategoryChange={handleCategoryChange}
         />
 
