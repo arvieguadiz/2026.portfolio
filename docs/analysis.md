@@ -19,6 +19,7 @@ The project adopts a hybrid organization:
 - **React 19 Hooks**: Extensive use of `useMemo`, `useCallback`, and `useRef` for performance and DOM manipulation.
 - **Concurrent Rendering Ready**: Built with React 19's latest features and `createRoot` API.
 - **Code Splitting**: Implemented using `React.lazy` and `Suspense` for the About, Projects, and Contact sections, ensuring faster initial load times.
+- **Skeleton Loading**: Replaced plain text loading indicators with themed skeleton screens (`SkeletonLoader.tsx`) that match the site's glassmorphism aesthetic, providing a smoother perceived performance.
 
 ## 3. Technical Deep Dive
 
